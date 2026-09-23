@@ -2,12 +2,14 @@
 #define BOARD_H
 
 #include <vector>
+
 class Board {
 private:
     int rows;
     int cols;
     std::vector<std::vector<bool>> board;
     std::vector<std::vector<int>> is_open;
+
 public:
     Board(int rows, int cols);
     void print();
@@ -17,4 +19,4 @@ public:
     bool is_mine(int row, int col);
 };
 
-#endif
+#endif // BOARD_H
