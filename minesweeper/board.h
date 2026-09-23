@@ -10,6 +10,7 @@ private:
     std::vector<std::vector<bool>> board;
     std::vector<std::vector<int>> is_open;
 
+    void reveal_zeros(int r, int c);
 public:
     Board();
     Board(int rows, int cols);

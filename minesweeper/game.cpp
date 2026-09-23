@@ -1,6 +1,5 @@
 #include "game.h"
-
-#include "board.h"
+#include <algorithm>
 #include <iostream>
 
 Game::Game(int given_rows, int given_cols, int percent) {
@@ -31,9 +30,10 @@ void Game::start_game() {
             board_.print();
             return;
         }
-        if (board_.is_won() == true) {
-            board_.print();
+        if (board_.is_won()) {
             std::cout << "Congratulations! You won !\n";
+            board_.reveal_all();
+            board_.print();
             return;
         }
     }

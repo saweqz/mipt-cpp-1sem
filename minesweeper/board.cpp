@@ -51,6 +51,7 @@ void Board::print() {
 }
 
 void Board::setMine(int row, int col) {
+    assert(row >= 0 && row < rows && col >= 0 && col < cols);
     board[row][col] = true;
 }
 
@@ -61,6 +62,27 @@ bool Board::is_mine(int row, int col) {
     return board[row][col];
 }
 
+void Board::reveal_zeros(int r, int c) {
+    if (r < 0 || c < 0 || r >= rows || c >= cols) return;
+    if (is_open[r][c] != 0) return;
+    if (board[r][c] == true) return;
+    is_open[r][c] = 1;
+    int cnt = 0;
+    for (int i = -1; i <= 1; i++) {
+        for (int j = -1; j <= 1; j++) {
+            if (is_mine(r + i, c + j)) cnt++;
+        }
+    }
+    if (cnt == 0) {
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                reveal_zeros(r + i, c + j);
+            }
+        }
+    }
+
+}
+
 bool Board::open_cell(int row, int col) {
     if (row < 0 || col < 0 || row >= rows || col >= cols) {
         return false;
@@ -68,7 +90,7 @@ bool Board::open_cell(int row, int col) {
     if (board[row][col] == true) {
         return true;  // попали на мину
     }
-    is_open[row][col] = 1;
+    reveal_zeros(row, col);
     return false;
 }
 
@@ -80,7 +102,7 @@ void Board::create_many_mines(int count_mines) {
     std::random_device rd;
     std::mt19937 rnd(rd());           // без фиксированного зерна
 
-    shuffle(permutation.begin(), permutation.end(), rnd);
+    std::shuffle(permutation.begin(), permutation.end(), rnd);
     for (int i = 0; i < count_mines; i++) {
         setMine(permutation[i] / cols, permutation[i] % cols);
     }
@@ -104,3 +126,4 @@ void Board::reveal_all() {
         }
     }
 }
+
