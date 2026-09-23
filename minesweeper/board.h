@@ -11,6 +11,7 @@ private:
     std::vector<std::vector<int>> is_open;
 
 public:
+    Board();
     Board(int rows, int cols);
     void print();
     void setMine(int row, int col);

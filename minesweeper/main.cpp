@@ -2,16 +2,15 @@
 #include "game.h"
 #include <iostream>
 
-using namespace std;
 
 int main() {
-    cout << "Enter the field size.\n";
-    cout << "Count rows: ";
+    std::cout << "Enter the field size.\n";
+    std::cout << "Count rows: ";
     int rows;
-    cin >> rows;
-    cout << "Count cols: ";
+    std::cin >> rows;
+    std::cout << "Count cols: ";
     int cols;
-    cin >> cols;
+    std::cin >> cols;
 
     Game game(rows, cols);
     game.start_game();
