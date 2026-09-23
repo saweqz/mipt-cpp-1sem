@@ -11,8 +11,10 @@ int main() {
     std::cout << "Count cols: ";
     int cols;
     std::cin >> cols;
-
-    Game game(rows, cols);
+    std:: cout << "Mine percent : ";
+    int percent;
+    std::cin >> percent;
+    Game game(rows, cols, percent);
     game.start_game();
 
     return 0;

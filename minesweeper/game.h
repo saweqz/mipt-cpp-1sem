@@ -6,8 +6,9 @@ private:
     int rows;
     int cols;
     Board board_;
+    int mine_percent;
 public:
-    Game(int rows, int cols);
+    Game(int rows, int cols, int percent);
     void start_game();
 };
 

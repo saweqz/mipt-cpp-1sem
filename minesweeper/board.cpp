@@ -21,7 +21,13 @@ Board::Board(int given_rows, int given_cols) {
 }
 
 void Board::print() {
+    std::cout << "  ";
+    for (int i = 0; i < cols; i++) {
+        std::cout << i ;
+    }
+    std::cout << '\n';
     for (int i = 0; i < rows; i++) {
+        std::cout << i << " ";
         for (int j = 0; j < cols; j++) {
             if (is_open[i][j] == 0) {          // туман
                 std::cout << "#";
@@ -77,5 +83,24 @@ void Board::create_many_mines(int count_mines) {
     shuffle(permutation.begin(), permutation.end(), rnd);
     for (int i = 0; i < count_mines; i++) {
         setMine(permutation[i] / cols, permutation[i] % cols);
+    }
+}
+
+bool Board::is_won() {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (board[i][j] == false && is_open[i][j] == 0) {
+                return false;  // есть закрытая не-минная клетка
+            }
+        }
+    }
+    return true;
+}
+
+void Board::reveal_all() {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            is_open[i][j] = 1;
+        }
     }
 }
