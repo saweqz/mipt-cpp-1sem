@@ -17,7 +17,7 @@ int main()
     {
         return weight * 30 + 150;
     };
-ч
+
     std::function<int(int)> post = [](int weight)
     {
         return weight * 15 + 50;
@@ -25,9 +25,9 @@ int main()
 
     int weight = 3;
 
-    std::cout << "Самовывоз: " << calc_delivery_cost(weight, pickup) << '\n';
-    std::cout << "Курьер: " << calc_delivery_cost(weight, courier) << '\n';
-    std::cout << "Почта: " << calc_delivery_cost(weight, post) << '\n';
+    std::cout << "Pickup: " << calc_delivery_cost(weight, pickup) << '\n';
+    std::cout << "Courier: " << calc_delivery_cost(weight, courier) << '\n';
+    std::cout << "Mail: " << calc_delivery_cost(weight, post) << '\n';
 
     return 0;
 }
